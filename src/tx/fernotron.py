@@ -1,3 +1,4 @@
+import gc
 import time
 import tx_config
 
@@ -10,6 +11,7 @@ def rev(s):
 def send_msg(msg_bit, repeat, tx):
     symbol_length = tx_config.general['symbol_length']
 
+    gc.collect()
     for _ in range(repeat):
         # Preambel
         for _ in range(12):
@@ -38,6 +40,7 @@ def send_msg(msg_bit, repeat, tx):
                 tx.value(0)
                 time.sleep_us(symbol_length * 8)
         tx.value(0)
+        time.sleep_us(symbol_length * 100)
 
 
 def convert_to_bits(msg_hex):

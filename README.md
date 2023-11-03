@@ -8,11 +8,11 @@
 ## Features
 
 - Responsive web interface
-- REST-API
+- REST-API (Home Assistant, ioBroker, openHAB support)
 - Unlimited number of devices
-- The fernotron remote control can be used alongside FernoPy
+- The original FernoTron remote control can be used alongside FernoPy
 - Quick and easy to set up
-- Cheap (total cost of only about 10€)
+- Cheap (total cost of only 10€)
 - ESP32 / ESP8266 support
 - Written in MicroPython
 - **[Protocol documentation](PROTOCOL.md)**
@@ -21,9 +21,11 @@
 
 ## Overview
 
-![](img/interface-device.png)
+<p align="center">
+<img alt="FernoPy Logo" src="img/interface-device.png" heigth=453 width=533/>
+</p>
 
-The web interface is provided directly via the web server of the ESP. The design and functionality of the interface is based on the original FernoTron remote control. 
+The web interface (left figure) is provided directly via the web server of the ESP. The design and functionality of the interface is based on the original FernoTron remote control. 
 
 - The upper left button switches between light and dark mode (*dark mode is not yet implemented*)
 - The upper right button is used to switch between multiple remote controls. You can configure as many remote controls as you like, allowing you to control an unlimited number of devices via FernoPy. However, the maximum number of groups and participants per remote control still exist in FernoPy (7 groups with 7 devices each). 
@@ -32,11 +34,12 @@ The web interface is provided directly via the web server of the ESP. The design
 
 ### REST-API
 
-Using the REST API, you can easily integrate FernoPy with other programs. You can also control the shutters via central smart home systems such as Home Assistant, ioBroker or openHAB.
+FernoPy can be integrated into other programs by using its REST-API. This allows you to connect the shutters to central smart home systems such as Home Assistant, ioBroker or openHAB.
 
 #### `/api/config`
 
-Using the GET method, you can query all the available remote controls with their groups and the respective devices. More specifically, the data of the *fernotron* dictionary in the *tx_config.py* file is returned (without the device types and id). 
+This URI can be used to query all available remote controls with their groups and the respective devices by using the GET method. To be more precise: The data of the *fernotron* dictionary in the *tx_config.py* file is returned (without the device types and id). 
+
 ```shell
 $ curl -X GET http://<YOUR_ESP_IP>/api/config
 {"remotes": [
@@ -53,7 +56,9 @@ $ curl -X GET http://<YOUR_ESP_IP>/api/config
 
 #### `/api/cmd`
 
-The individual devices can be controlled via POST method. Requests with the content-type `application/json` and `application/x-www-form-urlencoded` are supported. Group and member numbers 0-7, where 0 represents all. The available commands are up, down and stop.
+
+This URI can be used to transmit control messages to the shutters by using the POST method. Requests with the content-type `application/json` and `application/x-www-form-urlencoded` are supported. Group and member numbers 0-7, where 0 represents all. The available commands are up, down and stop.
+
 ```shell
 # application/json
 $ curl -d '{"remote":0, "member":2, "group":5, "cmd":"down"}' -H "Content-Type: application/json" -X POST http://<YOUR_ESP_IP>/api/cmd
@@ -133,7 +138,7 @@ Before FernoPy can be installed, the MicroPython firmware must be flashed onto t
 4. Verify that MicroPython is running properly on your micro controller by accessing the REPL prompt.
 
    ```
-   mpremote connect /dev/ttyUSB0
+   mpremote connect /dev/ttyUSB0 repl
    ```
 
 #### 1.2 Sniff the device ID
@@ -242,5 +247,7 @@ If you have a SDR on hand, such as an RTL-SDR, you can also sniff the ID by usin
 
 ## Credits
 
-Protocol documentation - https://github.com/zwiebert/tronferno-mcu  
-Logo - https://www.flaticon.com/free-icons
+Protocol documentation - [tronferno-mcu (Bert Winkelmann)](https://github.com/zwiebert/tronferno-mcu)  
+Web server - [Nanoweb (Charles R.)](https://github.com/hugokernel/micropython-nanoweb)  
+Signal processing - [Micropython Remote (Peter Hinch)](https://github.com/peterhinch/micropython_remote)  
+Logo - [Flaticon](https://www.flaticon.com/free-icons)
