@@ -1,5 +1,5 @@
 <p align="center">
-<img alt="FernoPy Logo" src="img/logo.png" style="zoom: 33%;" />
+<img alt="FernoPy Logo" src="img/logo.png" heigth=167 width=136/>
 </p>
 <h1 align="center">FernoPy</h1>
 
@@ -72,7 +72,8 @@ You only need an ESP32 / ESP8266 and a 433 MHz transmitter + receiver set. The f
 | Wemos D1 mini (ESP8266)        | [DE](https://www.amazon.de/s?k=wemos+d1+mini)       | 4€   | -                             | [Archive](https://web.archive.org/web/20230316032550/https://www.wemos.cc/en/latest/d1/d1_mini.html) |
 
 When buying the transmitter + receiver set, there is something to consider:  
-The transmitters in each set are basically the same and all work equally well. However, there are differences with the receivers. There are ones with a tunable inductor (small coil with a screw) and ones with a crystal oscillator (small metallic box). Receivers with a tunable inductor have a greater noise component, which makes it more difficult to receive a valid messages. However, testing has shown that these are sufficient for FernoPy, especially considering that the receiver is only needed once for the initial setup and not for normal operation. Receivers with a crystal oscillator (also called superheterodyne) can nevertheless simplify the initiation phase in some cases.
+The transmitters in each set are basically the same and all work equally well. However, there are differences with the receivers. There are ones with a tunable inductor (small coil with a screw) and ones with a crystal oscillator (small metallic box). Receivers with a tunable inductor have a greater noise component, which makes it more difficult to receive a valid messages. 
+However, testing has shown that these are sufficient for FernoPy, especially considering that the receiver is only needed once for the initial setup and not for normal operation. Receivers with a crystal oscillator (also called superheterodyne) can nevertheless simplify the initiation phase in some cases.
 
 ## Installation (Linux)
 
@@ -205,7 +206,7 @@ If you have a SDR on hand, such as an RTL-SDR, you can also sniff the ID by usin
    
    > :warning: The first group of a remote control is always the *All* group! This must not be removed! Likewise, the first device of a group (index 0) must always be *All*! You can translate the name into your own language if you wish.
    
-   ```json
+   ```python
    ...		
    		'groups': [
                {
@@ -241,5 +242,5 @@ If you have a SDR on hand, such as an RTL-SDR, you can also sniff the ID by usin
 
 ## Credits
 
-Protocol documentation - https://github.com/zwiebert/tronferno-mcu
+Protocol documentation - https://github.com/zwiebert/tronferno-mcu  
 Logo - https://www.flaticon.com/free-icons
