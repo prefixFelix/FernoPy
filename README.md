@@ -45,7 +45,7 @@ $ curl -X GET http://<YOUR_ESP_IP>/api/config
 {"remotes": [
 	[
 		{"name": "All", "members": ["All"]}, 
-		{'name': 'Living room', 'members': ['North', 'East', 'South', 'West']},
+		{'name': 'Living room', 'members': ['All', 'North', 'East', 'South', 'West']},
 		...
 	], 
 	[
