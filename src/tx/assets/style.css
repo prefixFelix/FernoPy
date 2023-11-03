@@ -1,0 +1,153 @@
+body {
+    color: #1C1C1C;
+    background-color: #ffffff;
+    font-family: system-ui, sans-serif;
+    font-size: 1.125rem;
+}
+button {
+    background: #0085FF;
+    color: #ffffff;
+    border: 2px solid #0085FF;
+    border-radius: 4px;
+    transition-duration: 0.4s;
+}
+@media (hover: hover) {
+    button:hover {
+        background-color: #FFFFFF;
+        color: #0085FF;
+    }
+}
+button:active {
+    background: #1172cc;
+    border: 2px solid #1172cc;
+    color: white;
+}
+
+
+
+.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+.wrapper {
+    max-width: 450px;
+    margin: auto;
+}
+
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    margin-top: 0;
+}
+.heading {
+    align-self: center;
+    font-size: 2rem;
+}
+.remote {
+    height: 40px;
+    width: 40px;
+}
+.dark-mode {
+    height: 40px;
+    width: 40px;
+}
+
+
+.display {
+    position: relative;
+    border: 3px solid #0085FF;
+    border-radius: 4px;
+    height: 90px;
+    margin-top: 0;
+}
+.txt {
+    position: absolute;
+    translate: -50% -50%;
+    text-align: center;
+    width: 100%;
+}
+.group {
+    top: 25%;
+    left: 50%;
+    font-size: 1.5rem;
+    font-style:italic
+}
+.member {
+    bottom: -20%;
+    left: 50%;
+    font-size: 2rem;
+    font-weight: bold;
+}
+.num {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    background: #0085FF;
+    color: #fff;
+    border-top: 3px solid #0085FF;
+    /*font-weight: bold;*/
+}
+.group-N {
+    bottom: 0;
+    left: 0;
+    border-top-right-radius: 4px;
+    border-right: 3px solid #0085FF;
+}
+.member-N {
+    bottom: 0;
+    right: 0;
+    border-top-left-radius: 4px;
+    border-left: 3px solid #0085FF;
+}
+
+
+.selector {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+.sel-icon {
+    display: table-cell;
+    color: #0085FF;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    vertical-align: middle;
+}
+.sel-button {
+    border-radius: 4px;
+    height: 50px;
+    width: 50px;
+}
+.group-left {
+    align-self: center;
+}
+.member-right {
+    align-self: center;
+}
+
+
+.controls {
+    margin-top: 50px;
+}
+.con-button {
+    display: block;
+    margin-bottom: 5px;
+    width: 100%;
+    height: 50px;
+}
+
+footer {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 5px;
+}

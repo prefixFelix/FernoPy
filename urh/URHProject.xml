@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<UniversalRadioHackerProject broadcast_address_hex="ffff" collapse_project_tabs="0" description="Fernotron" modulation_was_edited="0">
+  <modulators>
+    <modulator bits_per_symbol="1" carrier_amplitude="1.0" carrier_freq_hz="40000.0" carrier_phase_deg="0.0" gauss_bt="0.5" gauss_filter_width="1.0" index="0" modulation_type="ASK" name="Modulator" parameters="0.0,100.0" sample_rate="None" samples_per_symbol="100"/>
+  </modulators>
+  <device_conf>
+    <bandwidth>1000000.0</bandwidth>
+    <frequency>433920000.0</frequency>
+    <gain>20</gain>
+    <name>USRP</name>
+    <sample_rate>1000000.0</sample_rate>
+  </device_conf>
+  <simulator_rx_conf/>
+  <simulator_tx_conf/>
+  <group id="0" name="New Group"/>
+  <protocol>
+    <decodings>
+      <decoding>'Non Return To Zero (NRZ)', </decoding>
+      <decoding>'Non Return To Zero + Invert', 'Invert', </decoding>
+      <decoding>'Manchester I', 'Edge Trigger', </decoding>
+      <decoding>'Manchester II', 'Edge Trigger', 'Invert', </decoding>
+      <decoding>'Differential Manchester', 'Edge Trigger', 'Differential Encoding', </decoding>
+      <decoding>'fernotron', 'External Program', 'fernotron.py d;', </decoding>
+    </decodings>
+    <participants/>
+    <messages/>
+    <message_types>
+      <message_type assigned_by_logic_analyzer="0" assigned_by_ruleset="0" id="f230bf91-a7c4-4148-9486-aea74f412f26" name="bits without decoding">
+        <label apply_decoding="True" auto_created="False" color_index="4" display_bit_order_index="0" display_endianness="big" display_format_index="0" end="12" fuzz_me="2" fuzz_values="" name="preamble" show="2" start="0"/>
+        <label apply_decoding="True" auto_created="False" color_index="1" display_bit_order_index="0" display_endianness="big" display_format_index="0" end="51" fuzz_me="2" fuzz_values="" name="block 0" show="2" start="21"/>
+        <label apply_decoding="True" auto_created="False" color_index="1" display_bit_order_index="0" display_endianness="big" display_format_index="0" end="90" fuzz_me="2" fuzz_values="" name="block 0" show="2" start="60"/>
+        <label apply_decoding="True" auto_created="False" color_index="2" display_bit_order_index="0" display_endianness="big" display_format_index="0" end="129" fuzz_me="2" fuzz_values="" name="block 1" show="2" start="99"/>
+        <label apply_decoding="True" auto_created="False" color_index="2" display_bit_order_index="0" display_endianness="big" display_format_index="0" end="168" fuzz_me="2" fuzz_values="" name="block 1" show="2" start="138"/>
+        <label apply_decoding="True" auto_created="False" color_index="3" display_bit_order_index="0" display_endianness="big" display_format_index="0" end="207" fuzz_me="2" fuzz_values="" name="block 2" show="2" start="177"/>
+        <label apply_decoding="True" auto_created="False" color_index="3" display_bit_order_index="0" display_endianness="big" display_format_index="0" end="246" fuzz_me="2" fuzz_values="" name="block 2" show="2" start="216"/>
+        <label apply_decoding="True" auto_created="False" color_index="4" display_bit_order_index="0" display_endianness="big" display_format_index="0" end="285" fuzz_me="2" fuzz_values="" name="block 3" show="2" start="255"/>
+        <label apply_decoding="True" auto_created="False" color_index="4" display_bit_order_index="0" display_endianness="big" display_format_index="0" end="324" fuzz_me="2" fuzz_values="" name="block 3" show="2" start="294"/>
+        <label apply_decoding="True" auto_created="False" color_index="5" display_bit_order_index="0" display_endianness="big" display_format_index="0" end="363" fuzz_me="2" fuzz_values="" name="block 4" show="2" start="333"/>
+        <label apply_decoding="True" auto_created="False" color_index="5" display_bit_order_index="0" display_endianness="big" display_format_index="0" end="402" fuzz_me="2" fuzz_values="" name="block 4" show="2" start="372"/>
+        <label apply_decoding="True" auto_created="False" color_index="6" display_bit_order_index="0" display_endianness="big" display_format_index="0" end="441" fuzz_me="2" fuzz_values="" name="block 5" show="2" start="411"/>
+        <label apply_decoding="True" auto_created="False" color_index="6" display_bit_order_index="0" display_endianness="big" display_format_index="0" end="480" fuzz_me="2" fuzz_values="" name="block 5" show="2" start="450"/>
+        <ruleset mode="0"/>
+      </message_type>
+      <message_type assigned_by_logic_analyzer="0" assigned_by_ruleset="0" id="a51dc487-e3c1-425c-94ff-8d97643941fc" name="hex decoded">
+        <label apply_decoding="True" auto_created="False" color_index="0" display_bit_order_index="0" display_endianness="big" display_format_index="1" end="8" fuzz_me="2" fuzz_values="" name="device type" show="2" start="0"/>
+        <label apply_decoding="True" auto_created="False" color_index="1" display_bit_order_index="0" display_endianness="big" display_format_index="1" end="24" fuzz_me="2" fuzz_values="" name="address" show="2" start="8"/>
+        <label apply_decoding="True" auto_created="False" color_index="2" display_bit_order_index="0" display_endianness="big" display_format_index="1" end="28" fuzz_me="2" fuzz_values="" name="counter" show="2" start="24"/>
+        <label apply_decoding="True" auto_created="False" color_index="3" display_bit_order_index="0" display_endianness="big" display_format_index="1" end="32" fuzz_me="2" fuzz_values="" name="member" show="2" start="28"/>
+        <label apply_decoding="True" auto_created="False" color_index="4" display_bit_order_index="0" display_endianness="big" display_format_index="1" end="36" fuzz_me="2" fuzz_values="" name="group" show="2" start="32"/>
+        <label apply_decoding="True" auto_created="False" color_index="5" display_bit_order_index="0" display_endianness="big" display_format_index="1" end="40" fuzz_me="2" fuzz_values="" name="command" show="2" start="36"/>
+        <label apply_decoding="True" auto_created="False" color_index="6" display_bit_order_index="0" display_endianness="big" display_format_index="1" end="48" fuzz_me="2" fuzz_values="" name="crc" show="2" start="40"/>
+        <ruleset mode="0"/>
+      </message_type>
+    </message_types>
+  </protocol>
+  <simulator_config>
+    <items/>
+  </simulator_config>
+</UniversalRadioHackerProject>
