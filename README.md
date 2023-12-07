@@ -13,6 +13,7 @@
 - The original FernoTron remote control can be used alongside FernoPy
 - Quick and easy to set up
 - Cheap (total cost of only 10€)
+- Covers a whole medium-sized house
 - ESP32 / ESP8266 support
 - Written in MicroPython
 - **[Protocol documentation](PROTOCOL.md)**
@@ -244,6 +245,10 @@ If you have a SDR on hand, such as an RTL-SDR, you can also sniff the ID by usin
 5. Open the web interface by entering the displayed IP in your browser.
 
    > :information_source: If you open FernoPy in your smartphone's web browser, you can create a short cut for your home screen.
+
+## Installation (Windows)
+
+`todo`
 
 ## Credits
 

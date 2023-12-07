@@ -1,6 +1,6 @@
 # General device configuration
 general = {
-    'symbol_length': 300,           # in µs
+    'symbol_length': 350,           # in µs
     'tx_pin': 5,                    # GPIO!
     'tx_repeat': 4,                 # MSGs transmitted per command
     'essid': 'YOUR_NETWORK_ESSID',
