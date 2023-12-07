@@ -18,7 +18,7 @@
 - Written in MicroPython
 - **[Protocol documentation](PROTOCOL.md)**
 
-> :information_source: Only the basic control of devices is supported (up / down / stop). If you want to program devices please use: [tronferno-mcu](https://github.com/zwiebert/tronferno-mcu)
+>ℹ️ Only the basic control of devices is supported (up / down / stop). If you want to program devices please use: [tronferno-mcu](https://github.com/zwiebert/tronferno-mcu)
 
 ## Overview
 
