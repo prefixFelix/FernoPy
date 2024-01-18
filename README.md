@@ -326,16 +326,19 @@ The shutters are normally controlled by a 2411 Rademacher remote control. The re
 2. Connect the micro controller to your PC.
 
 3. Run the sniffing install script and follow the given instructions.
+   
+   > :warning: **A bug in mpremote can cause to a *UnicodeDecodeError* error!** The installation is still executed successfully. However, the subsequent outputs are not printed. Please switch to a different serial terminal software. Set the baud to 115200 and press the reset button on the micro controller. 
+   
    ```shell
    py 1-rx-install.py COM4
    ```
-
+   
    > :warning: The recording should ideally not take place in the vicinity of possible sources of interference, such as radio weather stations that also transmit on 433 MHz. The distance between the PC and the micro controller should also be maximized for the same reason (what the USB cable can offer).  Also micro controller and receiver should not be next to each other. **Compare your setup with [this illustration](img/setup.png)**.
-
+   
    > :warning: The antenna of the receiver should be parallel to the left side of the remote control. Vertically, the antenna should be in the lower third to half of the remote control. The distance between the remote control and the antenna should be as small as possible (they can also touch each other). **Compare your placement with [this illustration](img/remote.png)**.
-
+   
    > :information_source: If the recording does not work even after multiple position changes, you can activate the *debug* settings in the config file and alter the *margin* value. For the changes to take effect, the install script must be rerun.
-
+   
    > :information_source: If a `MemoryError` occurs you can reduce the *n_edges* value in the config. You may also need to enable *debug* output there. 
 
 ##### Alternative: Sniff via an SDR and Universal Radio Hacker (For experienced users)
@@ -347,7 +350,7 @@ If you have a SDR on hand, such as an RTL-SDR, you can also sniff the ID by usin
 1. Open the tx configuration file `/src/tx/tx_config.py`.
 
    Enter the ESSID of your home network and the password in the general dict.
-   
+
    ```python
    # General device configuration
    general = {
@@ -359,9 +362,9 @@ If you have a SDR on hand, such as an RTL-SDR, you can also sniff the ID by usin
        'html_assets': 'assets'         # Path to web assets
    }
    ```
-   
+
    > :information_source: The symbol length of FernoTron is actually 400µs, but 350µs are used because of the latency of the MC. You may have to adjust this value.
-   
+
    Next, the configuration of your FernoTron remote control must be entered into the fernotron list. Start by entering for each remote the type and id you got from the previous step.
 
    ```python
@@ -372,9 +375,9 @@ If you have a SDR on hand, such as an RTL-SDR, you can also sniff the ID by usin
            'device_id': 0x1234,	# Add information from the RX scipt here!
    		...
    ```
-   
+
    Now enter all groups and their devices with their respective names. The index of the groups and devices corresponds to that of the remote control.
-   
+
    > :warning: The first group of a remote control is always the *All* group! This must not be removed! Likewise, the first device of a group (index 0) must always be *All*! You can translate the name into your own language if you wish.
 
    ```python
@@ -396,12 +399,15 @@ If you have a SDR on hand, such as an RTL-SDR, you can also sniff the ID by usin
                },
    			...
    ```
-   
+
 2. Connect the micro controller to the 433 MHz **transmitter** as as described above in section 1.2.
 
 3. Connect the micro controller to your PC.
 
-4. Run the FernoPy install script `2-tx-install.bat`.
+4. Run the FernoPy install script.
+
+   > :warning: **A bug in mpremote can cause to a *UnicodeDecodeError* error!** The installation is still executed successfully. However, the subsequent outputs are not printed. Please switch to a different serial terminal software. Set the baud to 115200 and press the reset button on the micro controller. 
+
    ```sell
    py 2-tx-install.py COM4
    ```

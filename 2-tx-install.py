@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from mpremote import main
 import sys
 import os
