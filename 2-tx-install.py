@@ -9,7 +9,9 @@ import platform
 
 def call_cmd(args, src_path):
     if platform.system() == 'Windows':
-        subprocess.call(args.insert(0, 'py -m'), cwd=src_path)
+        args.insert(0, 'py')
+        args.insert(1, '-m')
+        subprocess.call(args, cwd=src_path)
     elif platform.system() == 'Linux':
         subprocess.call(args, cwd=src_path)
     else:
@@ -18,7 +20,9 @@ def call_cmd(args, src_path):
 
 def run_cmd(args):
     if platform.system() == 'Windows':
-        subprocess.run(args.insert(0, 'py -m'))
+        args.insert(0, 'py')
+        args.insert(1, '-m')
+        subprocess.run(args)
     elif platform.system() == 'Linux':
         subprocess.run(args)
     else:
