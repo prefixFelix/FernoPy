@@ -110,7 +110,7 @@ if __name__ == '__main__':
     if conf['debug']:
         print(f'\n+-------------- DEBUG Info --------------+\nData GPIO pin: {conf["rx_pin"]}\nEdges to be recorded: {conf["n_edges"]}\nSymbol length: {conf["symbol_length"]}µs\nSymbol detection margin: {conf["margin"]}µs\n+----------------------------------------+')
 
-    print(f'\n\n\n+-------------- Device ID Sniffer --------------+\n[!] Please read chapter 1.2 of the installation instructions before proceeding!\n[>] Selected data pin: GPIO {conf["rx_pin"]}\n\n[!] Position the remote. Press and hold the STOP button. Now hit ENTER to start the sniffing process.')
+    print(f'\n\n\n+-------------- Device ID Sniffer --------------+\n[!] Please read chapter 1.2 of the installation instructions before proceeding!\n[>] Selected data pin: GPIO {conf["rx_pin"]}\n\n[!] Position the remote. Press and hold the STOP button. Now hit ENTER to start the sniffing process.\n+----------------------------------------+')
 
     ready = False
     while not ready:
@@ -146,8 +146,8 @@ if __name__ == '__main__':
         error, device_type, device_id = tribit_to_block(tribits, conf['debug'])
         if error is '':
             ready = True
-            print(f'[!] SUCCESS! Please proceed with the installation guide and add the type / id to the config.py file.\n[>] Device type: {device_type}\n[>] Device id: {device_id}\n+----------------------------------------+')
+            print(f'[!] SUCCESS! Please proceed with the installation guide and add the type / id to the config.py file.\n[>] Device type: {device_type}\n[>] Device id: {device_id}\n')
         else:
-            print(f'[!] ERROR: {error} Please try again. Maybe reposition the remote/microcontroller.\n+----------------------------------------+')
+            print(f'[!] ERROR: {error} Please try again. Maybe reposition the remote/microcontroller.\n')
             gc.collect()
 

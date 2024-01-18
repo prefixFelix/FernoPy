@@ -166,9 +166,9 @@ The shutters are normally controlled by a 2411 Rademacher remote control. The re
    python3 1-rx-install.py /dev/ttyUSB0
    ```
    
-   > :warning: The recording should ideally not take place in the vicinity of possible sources of interference, such as radio weather stations that also transmit on 433 MHz. The distance between the PC and the micro controller should also be maximized for the same reason (what the USB cable can offer).  Also micro controller and receiver should not be next to each other. **Compare your setup with [this illustration](img/setup.png)**.
+   > :warning: The recording should ideally not take place in the vicinity of possible sources of interference, such as radio weather stations that also transmit on 433 MHz. The distance between the PC and the micro controller should also be maximized for the same reason (what the USB cable can offer).  Also micro controller and receiver should not be next to each other. **Compare your setup with [this illustration](img/setup.jpg)**.
    
-   > :warning: The antenna of the receiver should be parallel to the left side of the remote control. Vertically, the antenna should be in the lower third to half of the remote control. The distance between the remote control and the antenna should be as small as possible (they can also touch each other). **Compare your placement with [this illustration](img/remote.png)**.
+   > :warning: The antenna of the receiver should be parallel to the left side of the remote control. Vertically, the antenna should be in the lower third of the remote control. The distance between the remote control and the antenna should be as small as possible (they can also touch each other). **Compare your placement with [this illustration](img/remote.png)**.
    
    > :information_source: If the recording does not work even after multiple position changes, you can activate the *debug* settings in the config file and alter the *margin* value. For the changes to take effect, the install script must be rerun.
    
@@ -327,15 +327,15 @@ The shutters are normally controlled by a 2411 Rademacher remote control. The re
 
 3. Run the sniffing install script and follow the given instructions.
    
-   > :warning: **A bug in mpremote can cause to a *UnicodeDecodeError* error!** The installation is still executed successfully. However, the subsequent outputs are not printed. Please switch to a different serial terminal software. Set the baud to 115200 and press the reset button on the micro controller. 
+   > :warning: **A bug in mpremote can cause a *UnicodeDecodeError* error!** The installation is still executed successfully. However, the subsequent outputs are not printed. Please switch to a different serial terminal software. Set the baud to 115200 and press the reset button on the micro controller. 
    
    ```shell
    py 1-rx-install.py COM4
    ```
    
-   > :warning: The recording should ideally not take place in the vicinity of possible sources of interference, such as radio weather stations that also transmit on 433 MHz. The distance between the PC and the micro controller should also be maximized for the same reason (what the USB cable can offer).  Also micro controller and receiver should not be next to each other. **Compare your setup with [this illustration](img/setup.png)**.
+   > :warning: The recording should ideally not take place in the vicinity of possible sources of interference, such as radio weather stations that also transmit on 433 MHz. The distance between the PC and the micro controller should also be maximized for the same reason (what the USB cable can offer).  Also micro controller and receiver should not be next to each other. **Compare your setup with [this illustration](img/setup.jpg)**.
    
-   > :warning: The antenna of the receiver should be parallel to the left side of the remote control. Vertically, the antenna should be in the lower third to half of the remote control. The distance between the remote control and the antenna should be as small as possible (they can also touch each other). **Compare your placement with [this illustration](img/remote.png)**.
+   > :warning: The antenna of the receiver should be parallel to the left side of the remote control. Vertically, the antenna should be in the lower third of the remote control. The distance between the remote control and the antenna should be as small as possible (they can also touch each other). **Compare your placement with [this illustration](img/remote.png)**.
    
    > :information_source: If the recording does not work even after multiple position changes, you can activate the *debug* settings in the config file and alter the *margin* value. For the changes to take effect, the install script must be rerun.
    
@@ -406,7 +406,7 @@ If you have a SDR on hand, such as an RTL-SDR, you can also sniff the ID by usin
 
 4. Run the FernoPy install script.
 
-   > :warning: **A bug in mpremote can cause to a *UnicodeDecodeError* error!** The installation is still executed successfully. However, the subsequent outputs are not printed. Please switch to a different serial terminal software. Set the baud to 115200 and press the reset button on the micro controller. 
+   > :warning: **A bug in mpremote can cause a *UnicodeDecodeError* error!** The installation is still executed successfully. However, the subsequent outputs are not printed. Please switch to a different serial terminal software. Set the baud to 115200 and press the reset button on the micro controller. 
 
    ```sell
    py 2-tx-install.py COM4
