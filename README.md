@@ -83,6 +83,9 @@ However, testing has shown that these are sufficient for FernoPy, especially con
 
 ## Installation Linux (recommended)
 
+<details open>
+  <summary>Click to see the complete installation instructions</summary>
+
 ### 0. Flash MicroPython
 
 Before FernoPy can be installed, the MicroPython firmware must be flashed onto the micro controller. If MicroPython is already running on your micro controller you can skip this step. A more detailed tutorial can be found [here](https://docs.micropython.org/en/latest/esp8266/tutorial/intro.html).
@@ -242,11 +245,14 @@ If you have a SDR on hand, such as an RTL-SDR, you can also sniff the ID by usin
    
 5. Open the web interface by entering the displayed IP in your browser.
 
-   > :information_source: If you open FernoPy in your smartphone's web browser, you can create a short cut for your home screen.
+   > :information_source: You can save a short cut to FernoPy on the home screen of your smart phone. Instructions can be found [here](https://www.androidauthority.com/add-website-android-iphone-home-screen-3181682/).
+
+</details>
 
 ## Installation Windows
 <details>
   <summary>Click to see the complete installation instructions</summary>
+
 ### 0. Flash MicroPython
 
 Before FernoPy can be installed, the MicroPython firmware must be flashed onto the micro controller. If MicroPython is already running on your micro controller you can skip this step. A more detailed tutorial can be found [here](https://docs.micropython.org/en/latest/esp8266/tutorial/intro.html).
@@ -411,3 +417,4 @@ Protocol documentation - [tronferno-mcu (Bert Winkelmann)](https://github.com/zw
 Web server - [Nanoweb (Charles R.)](https://github.com/hugokernel/micropython-nanoweb)  
 Signal processing - [Micropython Remote (Peter Hinch)](https://github.com/peterhinch/micropython_remote)  
 Logo - [Flaticon](https://www.flaticon.com/free-icons)
+
