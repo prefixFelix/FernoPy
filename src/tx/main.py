@@ -17,7 +17,7 @@ def connect():
     sta_if = network.WLAN(network.STA_IF)
     sta_if.active(True)
     sta_if.connect(tx_config.general['essid'], tx_config.general['password'])
-    print(f'\n\n\nConnecting to {tx_config.general["essid"]}', end='')
+    print(f'\n\n\n[>] Connecting to {tx_config.general["essid"]}', end='')
     while not sta_if.isconnected():
         print('.', end='')
         time.sleep(0.2)
@@ -90,10 +90,11 @@ async def index(request):
 
 
 if __name__ == '__main__':
-    print('+-------------- DEBUG --------------+')
     tx.value(0)
 
     connect()
+    print('[!] You can now exit the shell with Crtl-x.')
+    print('[!] MSGs transmitted:')
 
     loop = uasyncio.get_event_loop()
     loop.create_task(naw.run())

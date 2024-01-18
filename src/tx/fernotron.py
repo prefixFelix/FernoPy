@@ -77,7 +77,7 @@ def convert_to_bits(msg_hex):
 
 # todo COUNTER FIX, MUST CHANGE FOR EACH MSG
 def build_msg(device_type, device_id, counter, member, group, cmd):
-    print('T:', hex(device_type), 'I:', hex(device_id), 'C:', counter, 'M:', member, 'G:', group, cmd)
+    print('[!] T:', hex(device_type), 'I:', hex(device_id), 'C:', counter, 'M:', member, 'G:', group, cmd)
     # Byte 0 - 2
     msg = (device_type << 16) | device_id
 
@@ -105,6 +105,6 @@ def build_msg(device_type, device_id, counter, member, group, cmd):
         num >>= 8
     # Byte 5
     msg = (msg << 8) | (checksum & 0xFF)  # Cut first nibble
-    print(hex(msg))
+    print('[!]', hex(msg))
     return msg
 

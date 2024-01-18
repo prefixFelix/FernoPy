@@ -18,7 +18,7 @@
 - Written in MicroPython
 - **[Protocol documentation](PROTOCOL.md)**
 
->ℹ️ Only the basic control of devices is supported (up / down / stop). If you want to program devices please use: [tronferno-mcu](https://github.com/zwiebert/tronferno-mcu)
+> :information_source: Only the basic control of devices is supported (up / down / stop). If you want to program devices please use: [tronferno-mcu](https://github.com/zwiebert/tronferno-mcu)
 
 ## Overview
 
@@ -81,7 +81,7 @@ When buying the transmitter + receiver set, there is something to consider:
 The transmitters in each set are basically the same and all work equally well. However, there are differences with the receivers. There are ones with a tunable inductor (small coil with a screw) and ones with a crystal oscillator (small metallic box). Receivers with a tunable inductor have a greater noise component, which makes it more difficult to receive a valid messages. 
 However, testing has shown that these are sufficient for FernoPy, especially considering that the receiver is only needed once for the initial setup and not for normal operation. Receivers with a crystal oscillator (also called superheterodyne) can nevertheless simplify the initiation phase in some cases.
 
-## Installation (Linux)
+## Installation Linux (recommended)
 
 ### 0. Flash MicroPython
 
@@ -160,10 +160,9 @@ The shutters are normally controlled by a 2411 Rademacher remote control. The re
 
 3. Run the sniffing install script and follow the given instructions.
    ```shell
-   chmod +x 1-rx-install.sh
-   ./1-rx-install.sh /dev/ttyUSB0
+   python3 1-rx-install.py /dev/ttyUSB0
    ```
-
+   
    > :warning: The recording should ideally not take place in the vicinity of possible sources of interference, such as radio weather stations that also transmit on 433 MHz. The distance between the PC and the micro controller should also be maximized for the same reason (what the USB cable can offer).  Also micro controller and receiver should not be next to each other. **Compare your setup with [this illustration](img/setup.png)**.
    
    > :warning: The antenna of the receiver should be parallel to the left side of the remote control. Vertically, the antenna should be in the lower third to half of the remote control. The distance between the remote control and the antenna should be as small as possible (they can also touch each other). **Compare your placement with [this illustration](img/remote.png)**.
@@ -187,7 +186,7 @@ If you have a SDR on hand, such as an RTL-SDR, you can also sniff the ID by usin
    ```python
    # General device configuration
    general = {
-       'symbol_length': 300,           # in µs
+       'symbol_length': 350,           # in µs
        'tx_pin': 5,                    # GPIO!
        'tx_repeat': 4,                 # MSGs transmitted per command
        'essid': 'YOUR_NETWORK_ESSID',
@@ -196,7 +195,7 @@ If you have a SDR on hand, such as an RTL-SDR, you can also sniff the ID by usin
    }
    ```
 
-   > :information_source: The symbol length of FernoTron is actually 400µs, but 300µs are used because of the latency of the MC. You may have to adjust this value.
+   > :information_source: The symbol length of FernoTron is actually 400µs, but 350µs are used because of the latency of the MC. You may have to adjust this value.
    
    Next, the configuration of your FernoTron remote control must be entered into the fernotron list. Start by entering for each remote the type and id you got from the previous step.
    ```python
@@ -232,23 +231,179 @@ If you have a SDR on hand, such as an RTL-SDR, you can also sniff the ID by usin
    			...
    ```
 
-2. Connect the micro controller to the 433 MHz transmitter as as described above in section 1.2.
+2. Connect the micro controller to the 433 MHz **transmitter** as as described above in section 1.2.
 
 3. Connect the micro controller to your PC.
 
 4. Run the FernoPy install script.
    ```shell
-   chmod +x 2-tx-install.sh
-   ./2-tx-install.sh /dev/ttyUSB0
+   python3 2-tx-install.py /dev/ttyUSB0
    ```
-
+   
 5. Open the web interface by entering the displayed IP in your browser.
 
    > :information_source: If you open FernoPy in your smartphone's web browser, you can create a short cut for your home screen.
 
-## Installation (Windows)
+## Installation Windows
+<details>
+  <summary>Click to see the complete installation instructions</summary>
+### 0. Flash MicroPython
 
-`todo`
+Before FernoPy can be installed, the MicroPython firmware must be flashed onto the micro controller. If MicroPython is already running on your micro controller you can skip this step. A more detailed tutorial can be found [here](https://docs.micropython.org/en/latest/esp8266/tutorial/intro.html).
+
+0. Make sure that [Python](https://www.python.org/downloads/) and pip (`py -m ensurepip --upgrade`) are installed!
+
+1. Open CMD and Install the [esptool](https://github.com/espressif/esptool/) CLI. 
+
+   ```shell
+   py -m pip install esptool
+   ```
+
+2. Download the appropriate firmware for the micro controller [here](https://micropython.org/download/). The file must be in binary format (.bin).
+
+3. Connect the micro controller to your PC.
+
+4. Open the Windows Device Manager to find out which port the micro controller is using. It should be listed under the item *Ports (COM & LPT)*.
+
+5. Erase the flash of the micro controller.
+
+   ```shell
+   py -m esptool.py --port COM4 erase_flash
+   ```
+
+6. Flash the MicroPython firmware.
+
+   ```shell
+   py -m esptool.py --port COM4 --baud 460800 write_flash --flash_size=detect -fm dout 0 ESP8266_GENERIC-20231005-v1.21.0.bin
+   ```
+
+   Port and the name of the firmware should of course be changed by you as needed.
+
+### 1. Obtain the device ID
+
+#### 1.1 Prepare FernoPy
+
+1. Install the [mpremote](https://docs.micropython.org/en/latest/reference/mpremote.html) CLI.
+
+   ```shell
+   py -m pip install --user mpremote
+   ```
+
+2. Clone or download the FernoPy repository.
+
+   ```shell
+   git clone https://github.com/prefixFelix/fernopy.git
+   ```
+
+3. Connect the micro controller to your PC.
+
+4. Verify that MicroPython is running properly on your micro controller by accessing the REPL prompt.
+
+   ```shell
+   py -m mpremote connect COM4 repl
+   ```
+
+#### 1.2 Sniff the device ID
+
+The shutters are normally controlled by a 2411 Rademacher remote control. The remote has a unique identification number, which is required for the operation of FernoPy.
+
+1. Connect the micro controller to the 433 MHz receiver as shown below:
+
+   | Micro controller | 433 MHz receiver |
+   | ---------------- | ---------------- |
+   | GND              | GND              |
+   | 5V               | VCC              |
+   | GPIO5            | DATA             |
+
+   GPIO5 is the standard pin for the data connection. If you want to use another one you have to change it in the file `/src/rx/rx_config.py`. 
+
+2. Connect the micro controller to your PC.
+
+3. Run the sniffing install script and follow the given instructions.
+   ```shell
+   py 1-rx-install.py COM4
+   ```
+
+   > :warning: The recording should ideally not take place in the vicinity of possible sources of interference, such as radio weather stations that also transmit on 433 MHz. The distance between the PC and the micro controller should also be maximized for the same reason (what the USB cable can offer).  Also micro controller and receiver should not be next to each other. **Compare your setup with [this illustration](img/setup.png)**.
+
+   > :warning: The antenna of the receiver should be parallel to the left side of the remote control. Vertically, the antenna should be in the lower third to half of the remote control. The distance between the remote control and the antenna should be as small as possible (they can also touch each other). **Compare your placement with [this illustration](img/remote.png)**.
+
+   > :information_source: If the recording does not work even after multiple position changes, you can activate the *debug* settings in the config file and alter the *margin* value. For the changes to take effect, the install script must be rerun.
+
+   > :information_source: If a `MemoryError` occurs you can reduce the *n_edges* value in the config. You may also need to enable *debug* output there. 
+
+##### Alternative: Sniff via an SDR and Universal Radio Hacker (For experienced users)
+
+If you have a SDR on hand, such as an RTL-SDR, you can also sniff the ID by using the software [Universal Radio Hacker](https://github.com/jopohl/urh). You can find a prepared project in the `urh` folder. It contains predefined message types and a custom decoder for the FernoTron protocol. The program also allows you to better understand the protocol structure.
+
+### 2. Install FernoPy
+
+1. Open the tx configuration file `/src/tx/tx_config.py`.
+
+   Enter the ESSID of your home network and the password in the general dict.
+   
+   ```python
+   # General device configuration
+   general = {
+       'symbol_length': 350,           # in µs
+       'tx_pin': 5,                    # GPIO!
+       'tx_repeat': 4,                 # MSGs transmitted per command
+       'essid': 'YOUR_NETWORK_ESSID',
+       'password': 'YOUR_NETWORK_PASSWORD',
+       'html_assets': 'assets'         # Path to web assets
+   }
+   ```
+   
+   > :information_source: The symbol length of FernoTron is actually 400µs, but 350µs are used because of the latency of the MC. You may have to adjust this value.
+   
+   Next, the configuration of your FernoTron remote control must be entered into the fernotron list. Start by entering for each remote the type and id you got from the previous step.
+
+   ```python
+   fernotron = [
+       {
+           # Remote 0
+           'device_type': 0x80,    # Add information from the RX scipt here!
+           'device_id': 0x1234,	# Add information from the RX scipt here!
+   		...
+   ```
+   
+   Now enter all groups and their devices with their respective names. The index of the groups and devices corresponds to that of the remote control.
+   
+   > :warning: The first group of a remote control is always the *All* group! This must not be removed! Likewise, the first device of a group (index 0) must always be *All*! You can translate the name into your own language if you wish.
+
+   ```python
+   ...		
+   		'groups': [
+               {
+                   # Default group. Do not remove!
+                   'name': 'All',
+                   'members': ['All']
+               },
+               {
+                   # Group 1 - Example
+                   'name': 'Living room',                          		# Group name
+                   'members': ['All', 'North', 'East', 'South', 'West']	# Group member names
+               },
+               {   # Group 2 - Example
+                   'name': 'Kitchen',
+                   'members': ['All', 'Street', 'Garden']
+               },
+   			...
+   ```
+   
+2. Connect the micro controller to the 433 MHz **transmitter** as as described above in section 1.2.
+
+3. Connect the micro controller to your PC.
+
+4. Run the FernoPy install script `2-tx-install.bat`.
+   ```sell
+   py 2-tx-install.py COM4
+   ```
+
+5. Open the web interface by entering the displayed IP in your browser.
+   > :information_source: You can save a short cut to FernoPy on the home screen of your smart phone. Instructions can be found [here](https://www.androidauthority.com/add-website-android-iphone-home-screen-3181682/).
+
+</details>
 
 ## Credits
 
