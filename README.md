@@ -123,8 +123,7 @@ Before FernoPy can be installed, the MicroPython firmware must be flashed onto t
 
 ### 1. Obtain the device ID
 
-> [!IMPORTANT]  
-> You can also find the ID on a sticker in the battery compartment of the remote control. The batteries must be removed for this.
+> :warning: You can also find the ID on a sticker in the battery compartment of the remote control. The batteries must be removed for this.
 
 #### 1.1 Prepare FernoPy
 
@@ -290,8 +289,7 @@ Before FernoPy can be installed, the MicroPython firmware must be flashed onto t
 
 ### 1. Obtain the device ID
 
-> [!IMPORTANT]  
-> You can also find the ID on a sticker in the battery compartment of the remote control. The batteries must be removed for this.
+> :warning: You can also find the ID on a sticker in the battery compartment of the remote control. The batteries must be removed for this.
 
 #### 1.1 Prepare FernoPy
 
