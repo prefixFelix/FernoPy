@@ -1,0 +1,54 @@
+
+<!doctype html>
+<html>
+<head>
+    <title>FernoPy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="assets/remote.js"></script>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/prefixFelix/FernoPy/main/img/apple-touch-icon.png"/>
+</head>
+
+<body onload="getConfig()">
+    <div class="wrapper">
+        <div class="header">
+            <button class="dark-mode-btn" onclick="toggleDarkMode()"><i class="fa-solid fa-moon fa-lg" id="dark-mode-icon"></i></button>
+            <div class="heading">FernoPy</div>
+            <button class="remote" onclick="updateDisplay('remote', 1)"><i class="fa-solid fa-tower-broadcast fa-lg"></i></button>
+        </div>
+        <hr>
+
+        <div class="display">
+            <div class="num group-N" id="group-num">1</div>
+            <div class="txt group" id="group"></div>
+            <div class="txt member" id="member"></div>
+            <div class="num member-N" id="member-num">1</div>
+        </div>
+
+        <div class="selector">
+            <div class="group-left">
+                <button class="sel-button" onclick="updateDisplay('group', 1)"><i class="fa-solid fa-chevron-up"></i></button>
+                <div class="sel-icon"><i class="fa-solid fa-cubes fa-xl"></i></div>
+                <button class="sel-button" onclick="updateDisplay('group', -1)"><i class="fa-solid fa-chevron-down"></i></button>
+            </div>
+            <div class="member-right">
+                <button class="sel-button" onclick="updateDisplay('member', 1)"><i class="fa-solid fa-chevron-up"></i></button>
+                <div class="sel-icon"><i class="fa-solid fa-cube"></i></div>
+                <button class="sel-button" onclick="updateDisplay('member', -1)"><i class="fa-solid fa-chevron-down"></i></button>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="con-button" onclick="postData('up')"><i class="fa-solid fa-chevron-up fa-2xl"></i></button>
+            <button class="con-button" onclick="postData('stop')"><i class="fa-solid fa-stop fa-2xl"></i></button>
+            <button class="con-button" onclick="postData('down')"><i class="fa-solid fa-chevron-down fa-2xl"></i></button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&lt;/&gt; by <a href="https://github.com/prefixFelix">prefixFelix</a></p>
+        <p>Version 1.1</p>
+    </div>
+</body>
+</html>
