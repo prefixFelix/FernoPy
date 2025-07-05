@@ -265,7 +265,7 @@ If you have a SDR on hand, such as an RTL-SDR, you can also sniff the ID by usin
 
 3. Copy FernoPy on the micro controller.
    ```shell
-   mpremote connect /dev/ttyUSB0 cp -r src/fernopy :
+   mpremote connect /dev/ttyUSB0 cp -r src/fernopy/. :
    ```
 
 4. Verify that everything works fine / get the IP of the ESP if you are using DHCP.
