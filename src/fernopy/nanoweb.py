@@ -78,6 +78,19 @@ class Nanoweb:
             return func
         return decorator
 
+    def get_content_type(self, filename):
+        """Get Content-Type header based on file extension"""
+        if filename.endswith('.css'):
+            return 'text/css; charset=UTF-8'
+        elif filename.endswith('.js'):
+            return 'application/javascript; charset=UTF-8'
+        elif filename.endswith('.html'):
+            return 'text/html; charset=UTF-8'
+        elif filename.endswith('.json'):
+            return 'application/json; charset=UTF-8'
+        else:
+            return 'application/octet-stream'
+
     async def generate_output(self, request, handler):
         """Generate output from handler
 
@@ -170,16 +183,18 @@ class Nanoweb:
                         else:
                             # 4. Current url have an assets extension ?
                             for extension in self.assets_extensions:
-                                if request.url.endswith('.' + extension):
-                                    await send_file(
-                                        request,
-                                        '%s/%s' % (
-                                            self.STATIC_DIR,
-                                            request.url,
-                                        ),
-                                        binary=True,
-                                    )
-                                    break
+                                content_type = self.get_content_type(request.url)
+
+                                await write(request, f"HTTP/1.1 200 OK\r\nContent-Type: {content_type}\r\n\r\n")
+                                await send_file(
+                                    request,
+                                    '%s/%s' % (
+                                        self.STATIC_DIR,
+                                        request.url,
+                                    ),
+                                    binary=(extension not in ['html', 'css', 'js']),
+                                )
+                                break
                             else:
                                 raise HttpError(request, 404, "File Not Found")
             except HttpError as e:

@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 body {
     color: #1C1C1C;
     background-color: #ffffff;
@@ -93,11 +95,12 @@ button:active {
     position: absolute;
     height: 30px;
     width: 30px;
-    text-align: center;
     background: #0085FF;
     color: #fff;
     border-top: 3px solid #0085FF;
-    /*font-weight: bold;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .group-N {
     bottom: 0;
